@@ -61,5 +61,34 @@ for (let i = 0; i < lines.length; i++) {
     sum += parseInt(number);
   }
 }
+// console.log(sum);
 
-console.log(sum);
+let sum2 = 0;
+for (let i = 0; i < lines.length; i++) {
+  let game = lines[i];
+  let gameNumber = game.split(":")[0].trim();
+  let gameDataScores = generateGameData(game);
+
+  let startingMaximums = {
+    green: 0,
+    blue: 0,
+    red: 0,
+  };
+
+  const newMaximums = gameDataScores.reduce((acc, game) => {
+    for (let [color, number] of Object.entries(game)) {
+      if (number > acc[color]) {
+        acc[color] = number;
+      }
+    }
+    return acc;
+  }, startingMaximums);
+
+  const power = Object.values(newMaximums).reduce((acc, number) => {
+    return acc * number;
+  }, 1);
+
+  sum2 += power;
+}
+
+console.log(sum2);
