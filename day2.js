@@ -66,7 +66,6 @@ for (let i = 0; i < lines.length; i++) {
 let sum2 = 0;
 for (let i = 0; i < lines.length; i++) {
   let game = lines[i];
-  let gameNumber = game.split(":")[0].trim();
   let gameDataScores = generateGameData(game);
 
   let startingMaximums = {
